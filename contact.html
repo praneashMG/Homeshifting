@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/fav.png" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>SHIFTORA</title>
+
+<script src="tailwind.js"></script>
+    <style>
+        /* --- Refined Premium Green & Rich Brown Palette --- */
+        :root, html[data-theme='light'] {
+            --color-background: #FFFFFF;
+            --color-primary-text: #5C4033; 
+            --color-secondary-text: #5C4033; /* Neat Rich Brown */
+            --color-accent: #000080; /* Lawn Green */
+            --color-accent-light: #5C4033; /* Rich Brown */
+            --color-border: #E5E7EB; 
+            --color-hover: #E6E6FF; 
+            --color-footer-bg: #5C4033;
+            --color-footer-text: #EAEAEA; 
+        }
+        html[data-theme='dark'] {
+            --color-background: #000000;
+            --color-primary-text: #FFFFFF;
+            --color-secondary-text: #D7CCC8;
+            --color-accent: #000080; 
+            --color-accent-light: #BCAAA4; 
+            --color-border: #374151; 
+            --color-hover: #2B1D16;
+            --color-footer-bg: #000000;
+            --color-footer-text: #FFFFFF;
+        }
+        
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        
+        .text-primary-text { color: var(--color-primary-text); }
+        .text-secondary-text { color: var(--color-secondary-text); }
+        .text-accent { color: var(--color-accent); }
+        .text-accent-light { color: var(--color-accent-light); }
+        .bg-background { background-color: var(--color-background); }
+        .bg-hover { background-color: var(--color-hover); }
+        .bg-accent { background-color: var(--color-accent); }
+        .border-border { border-color: var(--color-border); }
+
+        /* â”€â”€ Typography Weight System â”€â”€ */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 500 !important;
+        }
+        p, .text-secondary-text {
+            font-weight: 400 !important;
+        }
+
+        /* Rich Gradient */
+        .bg-custom-gradient {
+            background: linear-gradient(135deg, #000080 0%, #5C4033 100%);
+        }
+
+        #main-footer {
+            background-color: var(--color-footer-bg);
+            color: var(--color-footer-text);
+        }
+        #main-footer .footer-heading {
+            color: #000080 !important; /* Elegant Green Heading */
+        }
+        #main-footer .footer-link:hover {
+            color: #BCAAA4;
+            padding-left: 4px;
+            transition: all 0.2s ease;
+        }
+
+        /* Nav Link Underline */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background-color: var(--color-accent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* DROPDOWN */
+        .dropdown-wrapper { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            background-color: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            min-width: 220px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .dropdown-wrapper:hover .dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateY(0);
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--color-primary-text);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover {
+            background-color: var(--color-hover);
+            color: var(--color-accent);
+            padding-left: 1.25rem;
+        }
+
+        @media (max-width: 1024px) {
+            .dropdown-menu { position: static; display: none; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
+            .dropdown-wrapper:hover .dropdown-menu { display: block; }
+        }
+
+        /* â”€â”€ Canonical Button System â”€â”€ */
+        .btn-primary, .book-btn {
+            background: linear-gradient(135deg, #000080 0%, #5C4033 100%);
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-primary:hover, .book-btn:hover {
+            opacity: 0.88;
+            transform: scale(1.04);
+            box-shadow: 0 6px 18px rgba(230,179,37,0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: white;
+            box-shadow: 0 4px 12px rgba(230,179,37,0.25);
+        }
+        html[data-theme='dark'] .btn-outline {
+            color: #000080;
+            border-color: #000080;
+        }
+        html[data-theme='dark'] .btn-outline:hover {
+            background: #000080;
+            color: #000;
+        }
+        .btn-cta-white {
+            background: white;
+            color: #000080;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-cta-white:hover {
+            background: #f3f4f6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <header class="fixed top-4 left-0 right-0 z-50 transition-colors duration-300 shadow-xl border border-border bg-background mx-auto w-[96%] xl:w-[92%] max-w-[1600px] rounded-full" id="main-header">
+        <nav class="px-6 sm:px-10 lg:px-12 py-3 flex items-center justify-between h-[70px]">
+            <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide flex items-center gap-2">    
+                <i class="fa-solid fa-truck-fast" style="color: #000080;"></i>
+                <span style="color: #000080;">SHIFTORA</span>
+            </a>
+
+            <div class="hidden xl:flex items-center space-x-6">
+                <div class="flex space-x-6 rtl:space-x-reverse rtl:ml-6 text-primary-text font-medium">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link flex items-center" id="home-dropdown-btn">
+                            Home
+                            <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="index.html">Home 1</a>
+                            <a href="home2.html">Home 2</a>
+                        </div>
+                    </div>
+<a href="services.html" class="nav-link">Services</a>
+<a href="pricing.html" class="nav-link">Pricing</a>
+<a href="process.html" class="nav-link">Process</a>
+<a href="areas.html" class="nav-link">Areas</a>
+<a href="contact.html" class="nav-link">Contact</a>
+ <div class="dropdown-wrapper">
+                        <button class="nav-link flex items-center" id="dashboard-dropdown-btn">
+                            Dashboard
+                            <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="admin.html">Admin Dashboard</a>
+                            <a href="userdash.html">User Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-px h-6 bg-border mx-3"></div>
+                
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200">
+                        <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <button id="lang-icon" class="text-primary-text hover:text-accent p-1.5 rounded-full transition duration-200">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+</svg>                    </button>
+                    <div class="flex items-center gap-3 ml-3">
+                        <a href="login.html" class="btn-outline px-6 py-2 rounded-xl font-bold shadow-md">Login</a>
+                        <a href="signup.html" class="book-btn px-6 py-2.5 rounded-xl font-bold shadow-md">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="xl:hidden flex items-center">
+                <button id="mobile-menu-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow">
+    
+    <!-- SECTION 1: Contact Hero (Redesigned Split Layout) -->
+    <section id="contact-hero" class="pt-32 pb-32 lg:pt-40 lg:pb-40 bg-background relative overflow-hidden border-b border-border">
+        <!-- Background decorative elements -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-hover transform skew-x-[-15deg] translate-x-20 -z-10 hidden lg:block"></div>
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-accent opacity-10 rounded-full blur-3xl -z-10"></div>
+        
+        <div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px] relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                <!-- Left Text Content -->
+                <div class="lg:w-1/2 space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-hover border border-border text-accent font-bold text-sm tracking-wide uppercase shadow-sm">
+                        <i class="fa-solid fa-headset"></i> We're Here For You
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-primary-text tracking-tight leading-tight">
+                        Let's Plan Your <br class="hidden lg:block">
+                        <span class="text-transparent bg-clip-text bg-custom-gradient">Next Move.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-secondary-text max-w-2xl mx-auto lg:mx-0">
+                        Have a general question about our packing and shifting services? Reach out to our support team, or log into your portal for real-time tracking and quotes.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#contact-form" class="btn-primary w-full sm:w-auto text-center px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-accent/30 flex items-center justify-center gap-3">
+                            Message Us <i class="fa-solid fa-paper-plane"></i>
+                        </a>
+                        <a href="#contact-info" class="btn-outline w-full sm:w-auto text-center px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 bg-background">
+                            View Info <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                    </div>
+                    
+
+                </div>
+                
+                <!-- Right Image / Composition -->
+                <div class="lg:w-1/2 w-full relative">
+                    <div class="relative w-full max-w-lg mx-auto lg:max-w-none">
+                        <!-- Main Image -->
+                        <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-background relative z-10 w-full lg:w-4/5 ml-auto">
+                            <img src="assets/tt1.jpg" alt="Customer Support" class="w-full h-[300px] lg:h-[380px] object-cover">
+                        </div>
+                        
+                       
+                        
+                        <!-- Decorative dots -->
+                        <div class="absolute -top-6 -right-6 text-border opacity-50 z-0 hidden lg:block">
+                            <svg width="100" height="100" fill="none" viewBox="0 0 100 100">
+                                <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
+                                </pattern>
+                                <rect width="100" height="100" fill="url(#dots)"></rect>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Contact Information Cards -->
+    <section id="contact-info" class="py-16 bg-hover">
+        <div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px]">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 relative -mt-24 z-20">
+                <!-- Phone -->
+                <div class="bg-background rounded-3xl p-6 sm:p-8 border border-border shadow-xl text-center group hover:-translate-y-2 transition-transform duration-300 flex flex-col h-full">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-custom-gradient flex items-center justify-center text-white text-2xl mb-6 shadow-md group-hover:scale-110 transition-transform shrink-0">
+                        <i class="fa-solid fa-phone-volume"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-text mb-2">Call Support</h3>
+                    <p class="text-secondary-text text-sm mb-4 flex-grow">Available Mon-Sat, 8am to 8pm</p>
+                    <a href="tel:+18005550199" class="text-xl lg:text-2xl font-extrabold text-accent hover:underline mt-auto whitespace-nowrap">+1 (800) 555-0199</a>
+                </div>
+                <!-- Email -->
+                <div class="bg-background rounded-3xl p-6 sm:p-8 border border-border shadow-xl text-center group hover:-translate-y-2 transition-transform duration-300 flex flex-col h-full">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-custom-gradient flex items-center justify-center text-white text-2xl mb-6 shadow-md group-hover:scale-110 transition-transform shrink-0">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-text mb-2">Email Us</h3>
+                    <p class="text-secondary-text text-sm mb-4 flex-grow">We aim to reply within 2 hours</p>
+                    <a href="mailto:support@portfolio.com" class="text-base lg:text-lg font-bold text-accent hover:underline mt-auto break-all">support@portfolio.com</a>
+                </div>
+                <!-- Office -->
+                <div class="bg-background rounded-3xl p-6 sm:p-8 border border-border shadow-xl text-center group hover:-translate-y-2 transition-transform duration-300 flex flex-col h-full sm:col-span-2 lg:col-span-1">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-custom-gradient flex items-center justify-center text-white text-2xl mb-6 shadow-md group-hover:scale-110 transition-transform shrink-0">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-text mb-2">Head Office</h3>
+                    <p class="text-secondary-text text-sm mb-4 flex-grow">Central Hub & Dispatch</p>
+                    <p class="text-base lg:text-lg font-bold text-primary-text mt-auto">100 Logistics Way,<br>New York, NY 10001</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Split Form & Dashboard Redirect -->
+    <section id="contact-form" class="py-16 lg:py-20 bg-background border-b border-border">
+        <div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px]">
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+                <!-- Left: General Inquiry Form -->
+                <div class="lg:w-3/5">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-text mb-4">Send a General Inquiry</h2>
+                    <p class="text-secondary-text text-lg mb-8">Not ready to book? Send us a message and our relocation experts will get back to you.</p>
+                    
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-primary-text">Full Name</label>
+                                <input type="text" placeholder="John Doe" class="w-full bg-hover border border-border rounded-xl py-3 px-4 text-primary-text focus:outline-none focus:border-accent transition-colors">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-bold text-primary-text">Email Address</label>
+                                <input type="email" placeholder="john@example.com" class="w-full bg-hover border border-border rounded-xl py-3 px-4 text-primary-text focus:outline-none focus:border-accent transition-colors">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-primary-text">Subject</label>
+                            <select class="w-full bg-hover border border-border rounded-xl py-3 px-4 text-primary-text focus:outline-none focus:border-accent appearance-none">
+                                <option>General Question</option>
+                                <option>Partnership/Corporate</option>
+                                <option>Issue with a current move</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-primary-text">Your Message</label>
+                            <textarea rows="4" placeholder="How can we help you?" class="w-full bg-hover border border-border rounded-xl py-3 px-4 text-primary-text focus:outline-none focus:border-accent transition-colors"></textarea>
+                        </div>
+                        <button type="button" class="btn-primary px-8 py-4 rounded-xl font-bold w-full sm:w-auto shadow-lg">Send Message</button>
+                    </form>
+                </div>
+                
+                <!-- Right: Dashboard Callout -->
+                <div class="lg:w-2/5">
+                    <div class="bg-hover rounded-3xl border border-border p-6 sm:p-8 md:p-10 shadow-lg h-full flex flex-col justify-center">
+                        <div class="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center text-accent text-3xl mb-6 shrink-0">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-text mb-4">Looking for a Quote?</h3>
+                        <p class="text-secondary-text mb-6">
+                            For precise moving estimates, please use our smart user dashboard. By entering your pickup and drop-off addresses along with your home size, you'll receive an instant, itemized breakdown.
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-accent shrink-0"></i> <span class="text-sm font-bold text-primary-text">Instant accurate pricing</span></li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-accent shrink-0"></i> <span class="text-sm font-bold text-primary-text">Log special handling items</span></li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-accent shrink-0"></i> <span class="text-sm font-bold text-primary-text">Real-time truck tracking</span></li>
+                        </ul>
+                        <a href="signup.html" class="btn-outline text-center py-3 rounded-xl font-bold w-full bg-background mt-auto">Open Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Visual Map / Headquarters -->
+    <section id="contact-map" class="py-16 lg:py-20 bg-hover">
+        <div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px]">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-border flex flex-col md:block h-[500px] lg:h-[600px]">
+                <!-- Interactive Map iframe -->
+                <div class="h-full w-full absolute inset-0">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1689264426510!5m2!1sen!2sus" 
+                        class="w-full h-full grayscale opacity-80" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                
+                <!-- Floating Info Box -->
+                <div class="relative md:absolute md:top-1/2 md:left-12 md:transform md:-translate-y-1/2 bg-background p-6 md:p-8 m-6 md:m-0 rounded-2xl shadow-2xl border border-border md:max-w-sm z-10">
+                    <div class="w-12 h-12 bg-custom-gradient rounded-full flex items-center justify-center text-white text-xl mb-4 shadow-md shrink-0">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <h4 class="font-extrabold text-primary-text text-xl mb-2">Central Dispatch</h4>
+                    <p class="text-sm text-secondary-text mb-4">Our main logistics hub where all routes are monitored and managed.</p>
+                    <div class="text-sm font-bold text-primary-text">100 Logistics Way, Floor 4</div>
+                    <div class="text-sm font-bold text-primary-text">New York, NY 10001</div>
+                    <div class="mt-4 pt-4 border-t border-border">
+                        <a href="https://maps.google.com" target="_blank" class="text-accent font-bold text-sm flex items-center gap-2 hover:underline">Get Directions <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: FAQs -->
+    <section id="contact-faq" class="py-16 lg:py-20 bg-background border-y border-border">
+        <div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px]">
+            <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-text mb-4">Frequently Asked Questions</h2>
+                <p class="text-secondary-text text-lg">Quick answers to common questions about booking and tracking your move.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                <div class="bg-hover border border-border rounded-2xl p-6 flex flex-col h-full">
+                    <h4 class="font-bold text-primary-text text-lg mb-3 flex items-start gap-3">
+                        <i class="fa-solid fa-circle-question text-accent mt-1 shrink-0"></i> How do I track my shifting status?
+                    </h4>
+                    <p class="text-secondary-text text-sm leading-relaxed flex-grow">
+                        Once your booking is confirmed, log into your user dashboard. You can track your move in real-time from "Crew Assigned" to "In Transit" and finally "Delivered."
+                    </p>
+                </div>
+                
+                <div class="bg-hover border border-border rounded-2xl p-6 flex flex-col h-full">
+                    <h4 class="font-bold text-primary-text text-lg mb-3 flex items-start gap-3">
+                        <i class="fa-solid fa-circle-question text-accent mt-1 shrink-0"></i> Are my belongings insured?
+                    </h4>
+                    <p class="text-secondary-text text-sm leading-relaxed flex-grow">
+                        Yes, all our standard and premium packages include comprehensive transit insurance. You can review your policy limits directly in your itemized invoice on the dashboard.
+                    </p>
+                </div>
+
+                <div class="bg-hover border border-border rounded-2xl p-6 flex flex-col h-full">
+                    <h4 class="font-bold text-primary-text text-lg mb-3 flex items-start gap-3">
+                        <i class="fa-solid fa-circle-question text-accent mt-1 shrink-0"></i> Can I add special handling items later?
+                    </h4>
+                    <p class="text-secondary-text text-sm leading-relaxed flex-grow">
+                        Yes! If you acquire a fragile antique or piano after booking, you can update your inventory directly in the user portal up to 48 hours before the move.
+                    </p>
+                </div>
+
+                <div class="bg-hover border border-border rounded-2xl p-6 flex flex-col h-full">
+                    <h4 class="font-bold text-primary-text text-lg mb-3 flex items-start gap-3">
+                        <i class="fa-solid fa-circle-question text-accent mt-1 shrink-0"></i> How is the final price calculated?
+                    </h4>
+                    <p class="text-secondary-text text-sm leading-relaxed flex-grow">
+                        Pricing is transparent and based on home size, distance, and selected packing tier. The dashboard provides a full charge breakdown before you pay.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: High-Impact Contact CTA -->
+    <section id="contact-cta" class="py-12 mb-12">
+        <div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px]">
+            <div class="bg-custom-gradient rounded-[2rem] p-6 sm:p-10 md:p-16 text-center text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute right-0 bottom-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl transform translate-x-1/4 translate-y-1/4"></div>
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 !text-white">Ready for a Smooth Relocation?</h2>
+                    <p class="text-white/90 text-lg md:text-xl mb-10">
+                        Skip the emails and phone calls. Create your account now to build your move, get instant pricing, and secure your moving date.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="signup.html" class="bg-white text-[#5C4033] px-8 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition shadow-lg w-full sm:w-auto flex justify-center items-center text-center">Open Your Dashboard</a>
+                        <a href="services.html" class="border-2 border-white text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition w-full sm:w-auto flex justify-center items-center text-center">Explore Services First</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        <div id="drawer-content" class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 xl:hidden max-h-[85vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
+            <div class="flex justify-between items-center pb-4 border-b border-border">
+                <a href="index.html" class="text-2xl font-serif font-extrabold tracking-wide flex items-center gap-2">
+                    <i class="fa-solid fa-truck-fast" style="color: #000080;"></i>
+                    <span style="color: #000080;">SHIFTORA</span>
+                </a>
+                <button id="mobile-menu-close" class="text-primary-text hover:text-accent"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            </div>
+            <nav class="flex flex-col space-y-2 py-4">
+                <div>
+                    <button class="block text-primary-text font-semibold text-lg py-2 w-full text-left flex justify-between items-center" id="mobile-homes-toggle">
+                        Home <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="homes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="mobile-homes-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border">
+                        <a href="index.html" class="block text-secondary-text hover:text-accent text-base py-1">Home 1</a>
+                        <a href="home2.html" class="block text-secondary-text hover:text-accent text-base py-1">Home 2</a>
+                    </div>
+                </div>
+<a href="services.html" class="block text-primary-text font-semibold text-lg py-2">Services</a>
+<a href="pricing.html" class="block text-primary-text font-semibold text-lg py-2">Pricing</a>
+<a href="process.html" class="block text-primary-text font-semibold text-lg py-2">Process</a>
+<a href="areas.html" class="block text-primary-text font-semibold text-lg py-2">Areas</a>
+<a href="contact.html" class="block text-primary-text font-semibold text-lg py-2">Contact</a>
+<!-- Dashboard Dropdown -->
+<div>
+    <button class="block text-primary-text font-semibold text-lg py-2 w-full text-left flex justify-between items-center" id="mobile-dashboard-toggle">
+        Dashboard
+        <svg class="w-4 h-4 transform transition-transform duration-200" id="dashboard-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+    </button>
+
+    <div id="mobile-dashboard-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border">
+        <a href="admin.html" class="block text-secondary-text hover:text-accent text-base py-1">Admin Dashboard</a>
+        <a href="userdash.html" class="block text-secondary-text hover:text-accent text-base py-1">User Dashboard</a>
+    </div>
+</div>
+            </nav>
+            <div class="pt-4 border-t border-border mt-4 flex justify-around items-center">
+                <button id="mobile-lang-icon-drawer" class="flex flex-col items-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+</svg><span class="text-xs mt-1 text-secondary-text">RTL</span></button>
+                <button id="drawer-theme-toggle" class="flex flex-col items-center">
+                    <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                    <span class="text-xs mt-1 text-secondary-text">Theme</span>
+                </button>
+            </div>
+            <div class="flex mt-5 gap-5 w-full">
+                <a href="login.html" class="flex-1 btn-outline text-center py-1.5 rounded-xl font-bold text-sm shadow-md">Login</a>
+                <a href="signup.html" class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <footer id="main-footer" class="pt-20 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-gray-800">
+                <div class="lg:col-span-2">
+                    <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide flex items-center gap-2 mb-4">    
+                        <i class="fa-solid fa-truck-fast" style="color: #000080;"></i>
+                        <span style="color: #000080;">SHIFTORA</span>
+                    </a>
+<p class="text-lg leading-relaxed max-w-sm !text-white-400">
+Providing authentic fossil and mineral specimens with premium quality and rare geological treasures for collectors and enthusiasts.</p>                    <div class="flex gap-6 mt-10">
+                        <a href="#" class="text-white hover:text-accent transition text-xl"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-accent transition text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-accent transition text-xl"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-xl mb-6">Our Services</h4>
+                   <ul class="space-y-4">
+    <li><a href="services.html" class="footer-link">Services</a></li>
+    <li><a href="pricing.html" class="footer-link">Pricing</a></li>
+    <li><a href="process.html" class="footer-link">Process</a></li>
+    <li><a href="areas.html" class="footer-link">Areas</a></li>
+</ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-xl mb-6">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="partners.html" class="footer-link">Partners</a></li>
+                        <li><a href="services.html" class="footer-link">Services</a></li>
+                        <li><a href="pricing.html" class="footer-link">Pricing</a></li>
+                        <li><a href="process.html" class="footer-link">Process</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-xl mb-6">Newsletter</h4>
+                    <div class="flex flex-col space-y-4">
+                        <input type="email" placeholder="Email address" class="p-4 text-sm rounded-xl bg-gray-900 border border-gray-800 focus:outline-none text-white" />
+                        <button class="btn-primary font-bold py-3 rounded-xl">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="py-10 text-center text-white-500 text-sm">Â© 2026 SHIFTORA . All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+
+            // Drawer Control
+            const menuDrawer = document.getElementById('mobile-menu-drawer');
+            const menuContent = document.getElementById('drawer-content');
+            const menuBackdrop = document.getElementById('drawer-backdrop');
+
+            const openDrawer = () => {
+                menuDrawer.classList.remove('pointer-events-none');
+                menuContent.classList.remove('translate-y-[-100%]');
+                menuBackdrop.classList.add('opacity-50', 'pointer-events-auto');
+                document.body.style.overflow = 'hidden';
+            };
+            const closeDrawer = () => {
+                menuContent.classList.add('translate-y-[-100%]');
+                menuBackdrop.classList.remove('opacity-50', 'pointer-events-auto');
+                setTimeout(() => { menuDrawer.classList.add('pointer-events-none'); document.body.style.overflow = ''; }, 300);
+            };
+
+            document.getElementById('mobile-menu-open').addEventListener('click', openDrawer);
+            document.getElementById('mobile-menu-close').addEventListener('click', closeDrawer);
+            menuBackdrop.addEventListener('click', closeDrawer);
+
+            // Accordions
+            const setupAccordion = (toggleId, menuId, iconId) => {
+                const toggle = document.getElementById(toggleId);
+                toggle?.addEventListener('click', () => {
+                    const menu = document.getElementById(menuId);
+                    const icon = document.getElementById(iconId);
+                    menu.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            };
+            setupAccordion('mobile-homes-toggle', 'mobile-homes-menu', 'homes-icon');
+            setupAccordion('mobile-dashboard-toggle', 'mobile-dashboard-menu', 'dashboard-icon');
+
+
+            // Theme & RTL
+            const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('drawer-theme-toggle')];
+            const applyTheme = (theme) => {
+                html.setAttribute('data-theme', theme);
+                document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark'));
+                document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light'));
+            };
+            themeToggles.forEach(btn => btn.addEventListener('click', () => {
+                const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                localStorage.setItem('theme', next);
+                applyTheme(next);
+            }));
+            applyTheme(localStorage.getItem('theme') || 'light');
+
+            const langToggles = [document.getElementById('lang-icon'), document.getElementById('mobile-lang-icon-drawer')];
+            langToggles.forEach(btn => btn.addEventListener('click', () => {
+                const current = localStorage.getItem('language') === 'ar' ? 'en' : 'ar';
+                localStorage.setItem('language', current);
+                html.setAttribute('dir', current === 'ar' ? 'rtl' : 'ltr');
+            }));
+            html.setAttribute('dir', localStorage.getItem('language') === 'ar' ? 'rtl' : 'ltr');
+
+            // Active Nav Logic
+            const setActiveNavLink = () => {
+                const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+                
+                // Desktop Links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active', 'text-accent', 'font-bold');
+                    } else {
+                        link.classList.remove('active', 'text-accent', 'font-bold');
+                    }
+                });
+
+                // Desktop Dropdowns
+                if (['index.html', 'home2.html'].includes(currentPath)) {
+                    document.getElementById('home-dropdown-btn')?.classList.add('active', 'text-accent', 'font-bold');
+                }
+                if (['admin.html', 'userdash.html'].includes(currentPath)) {
+                    document.getElementById('dashboard-dropdown-btn')?.classList.add('active', 'text-accent', 'font-bold');
+                }
+
+                // Mobile Links
+                document.querySelectorAll('#drawer-content a').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === currentPath) {
+                        link.classList.add('text-accent', 'font-bold');
+                        link.classList.remove('text-primary-text', 'text-secondary-text');
+                    } else {
+                        if (link.closest('#mobile-homes-menu') || link.closest('#mobile-dashboard-menu')) {
+                            link.classList.add('text-secondary-text');
+                            link.classList.remove('text-accent', 'font-bold');
+                        } else {
+                            link.classList.add('text-primary-text');
+                            link.classList.remove('text-accent', 'font-bold');
+                        }
+                    }
+                });
+
+                // Mobile Toggles
+                if (['index.html', 'home2.html'].includes(currentPath)) {
+                    document.getElementById('mobile-homes-toggle')?.classList.add('text-accent', 'font-bold');
+                }
+                if (['admin.html', 'userdash.html'].includes(currentPath)) {
+                    document.getElementById('mobile-dashboard-toggle')?.classList.add('text-accent', 'font-bold');
+                }
+            };
+            setActiveNavLink();
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+
+    const btnMonthly = document.getElementById("btn-monthly");
+    const btnSeasonal = document.getElementById("btn-seasonal");
+
+    const monthlyPlans = document.getElementById("monthly-plans");
+    const seasonalPlans = document.getElementById("seasonal-plans");
+
+    if (!btnMonthly || !btnSeasonal || !monthlyPlans || !seasonalPlans) return;
+
+    btnMonthly.addEventListener("click", function () {
+
+        btnMonthly.classList.add("bg-[#000080]", "text-white", "shadow-lg");
+        btnMonthly.classList.remove("text-primary-text");
+
+        btnSeasonal.classList.remove("bg-[#000080]", "text-white", "shadow-lg");
+        btnSeasonal.classList.add("text-primary-text");
+
+        monthlyPlans.classList.remove("hidden");
+        monthlyPlans.classList.add("grid");
+
+        seasonalPlans.classList.remove("grid");
+        seasonalPlans.classList.add("hidden");
+
+    });
+
+    btnSeasonal.addEventListener("click", function () {
+
+        btnSeasonal.classList.add("bg-[#000080]", "text-white", "shadow-lg");
+        btnSeasonal.classList.remove("text-primary-text");
+
+        btnMonthly.classList.remove("bg-[#000080]", "text-white", "shadow-lg");
+        btnMonthly.classList.add("text-primary-text");
+
+        seasonalPlans.classList.remove("hidden");
+        seasonalPlans.classList.add("grid");
+
+        monthlyPlans.classList.remove("grid");
+        monthlyPlans.classList.add("hidden");
+
+    });
+
+});
+    </script>
+</body>
+</html>

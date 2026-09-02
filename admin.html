@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/fav.png" type="image/jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <title>Admin Â· SHIFTORA</title>
+  <script src="tailwind.js"></script>
+  <style>
+    /* --- exact palette from index.html --- */
+    :root, html[data-theme='light'] {
+      --color-background: #FFFFFF;
+      --color-primary-text: #5C4033;
+      --color-secondary-text: #5C4033;
+      --color-accent: #000080;
+      --color-accent-light: #5C4033;
+      --color-border: #E5E7EB;
+      --color-hover: #E6E6FF;
+      --color-card-bg: #FFFFFF;
+      --color-sidebar-bg: #FDF9F2;
+      --color-success: #2B7A4B;
+      --color-warning: #000080;
+      --color-danger: #C84B31;
+    }
+    html[data-theme='dark'] {
+      --color-background: #000000;
+      --color-primary-text: #FFFFFF;
+      --color-secondary-text: #D7CCC8;
+      --color-accent: #000080;
+      --color-accent-light: #BCAAA4;
+      --color-border: #374151;
+      --color-hover: #2B1D16;
+      --color-card-bg: #111111;
+      --color-sidebar-bg: #0A0A0A;
+      --color-success: #3B9E6D;
+      --color-warning: #000080;
+      --color-danger: #E05A3A;
+    }
+    body {
+      background-color: var(--color-background);
+      color: var(--color-primary-text);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4,h5,h6 { font-weight: 500 !important; }
+    p, .text-secondary-text { font-weight: 400 !important; }
+    .text-accent { color: var(--color-accent); }
+    .text-accent-light { color: var(--color-accent-light); }
+    .bg-background { background-color: var(--color-background); }
+    .bg-hover { background-color: var(--color-hover); }
+        .bg-accent { background-color: var(--color-accent); }
+    .border-border { border-color: var(--color-border); }
+    .card-bg { background-color: var(--color-card-bg); }
+    .bg-sidebar { background-color: var(--color-sidebar-bg); }
+
+    /* dashboard cards */
+    .dashboard-card {
+      background-color: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px -8px rgba(230,179,37,0.08);
+    }
+    .dashboard-card:hover {
+      border-color: var(--color-accent);
+      box-shadow: 0 12px 28px -12px rgba(230,179,37,0.2);
+    }
+
+    /* sidebar - same style as admin.html but with index palette */
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-radius: 1rem;
+      color: var(--color-secondary-text);
+      transition: all 0.2s ease;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      cursor: pointer;
+    }
+    .sidebar-link:hover, .sidebar-link.active {
+      background: linear-gradient(135deg, #000080 0%, #5C4033 100%);
+      color: white;
+    }
+    .sidebar-link:hover svg, .sidebar-link.active svg { stroke: white; color: white; }
+
+    .badge-success { background: rgba(230,179,37,0.12); color: #2B7A4B; font-weight: 600; }
+    .badge-warning { background: rgba(230,179,37,0.15); color: #B8860B; font-weight: 600; }
+    .badge-danger { background: rgba(200,75,49,0.12); color: #C84B31; font-weight: 600; }
+    html[data-theme='dark'] .badge-success { color: #6FBF4C; background: rgba(111,191,76,0.15); }
+    html[data-theme='dark'] .badge-warning { color: #000080; }
+    html[data-theme='dark'] .badge-danger { color: #E6775E; }
+
+    .bg-brew-gradient {
+      background: linear-gradient(135deg, #000080 0%, #5C4033 100%);
+    }
+    .btn-accent {
+      background: linear-gradient(135deg, #000080 0%, #5C4033 100%);
+      color: white;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    .btn-accent:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(230,179,37,0.3);
+    }
+
+    #mobile-overlay {
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      position: fixed;
+      inset: 0;
+      z-index: 55;
+    }
+    #mobile-overlay.active { opacity: 1; pointer-events: auto; }
+
+    html[dir="rtl"] .sidebar-link { flex-direction: row-reverse; }
+    html[dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+
+    /* shiftora logo */
+    .logo-shiftora {
+      font-family: ui-serif, serif;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .logo-shiftora i { color: #000080; }
+    .logo-shiftora span { color: #000080; }
+  </style>
+</head>
+<body class="antialiased bg-background">
+
+  <!-- TOP NAV (shiftora branding) -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-background border-b border-border h-[73px]">
+    <div class="px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-xl hover:bg-hover transition">
+          <svg class="w-6 h-6 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <a href="index.html" class="logo-shiftora text-2xl md:text-3xl">
+          <i class="fa-solid fa-truck-fast"></i>
+          <span>SHIFTORA</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3 sm:gap-4">
+        <div class="hidden sm:flex items-center gap-2 bg-hover px-4 py-2 rounded-xl">
+          <span class="w-2 h-2 bg-emerald-600 rounded-full"></span>
+          <span class="text-sm font-medium text-primary-text">Dispatch Active</span>
+        </div>
+
+        <button id="lang-toggle" class="p-2 rounded-full hover:bg-hover transition">
+          <svg class="w-5 h-5 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+          </svg>
+        </button>
+
+        <button id="theme-toggle" class="p-2 rounded-full hover:bg-hover transition">
+          <svg class="w-5 h-5 light-icon text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <svg class="w-5 h-5 dark-icon hidden text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <div class="flex items-center gap-2 pl-3 border-l border-border">
+          <div class="w-9 h-9 rounded-full bg-brew-gradient flex items-center justify-center text-white font-bold">JD</div>
+          <div class="hidden sm:block">
+            <p class="text-sm font-medium">Admin User</p>
+            <p class="text-xs text-secondary-text">System Administrator</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-overlay" class="lg:hidden"></div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="flex min-h-screen pt-[73px]">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="fixed top-0 lg:top-[73px] left-0 w-72 lg:w-64 h-full lg:h-[calc(100vh-73px)] z-[60] transform -translate-x-full lg:translate-x-0 transition-transform duration-300 bg-background border-r border-border overflow-y-auto shrink-0">
+      <div class="p-5">
+        <div class="flex lg:hidden justify-between items-center mb-6">
+          <span class="font-bold text-accent">Menu</span>
+          <button id="close-sidebar" class="p-2 hover:bg-hover rounded-lg">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <nav class="flex flex-col gap-1">
+          <p class="text-xs uppercase tracking-wider text-secondary-text font-bold px-3 mb-2">Dashboard</p>
+
+          <a href="#" data-section="overview" class="sidebar-link active">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M6 14h6m-6 4h12M5 4h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" />
+            </svg>
+            <span>Overview</span>
+          </a>
+
+          <a href="#" data-section="requests" class="sidebar-link">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <span>All Bookings</span>
+            <span class="ml-auto bg-accent text-white text-xs px-2 py-0.5 rounded-full">3</span>
+          </a>
+
+          <a href="#" data-section="tracking" class="sidebar-link">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5-5 5-5" />
+            </svg>
+            <span>Manage Crew</span>
+          </a>
+
+          <a href="#" data-section="invoices" class="sidebar-link">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+            <span>Finance & Revenue</span>
+          </a>
+
+          <a href="#" data-section="profile" class="sidebar-link">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            <span>Platform Settings</span>
+          </a>
+
+          <a href="#" id="logoutBtn" class="sidebar-link mt-4 border-t border-border pt-3 text-red-600 hover:text-white hover:bg-red-600 !py-2 !px-3 gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
+            </svg>
+            <span class="font-medium">Logout</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 min-w-0 space-y-6 lg:ml-64 px-4 sm:px-6 lg:px-8 py-6">
+
+      <!-- OVERVIEW -->
+      <div id="overview" class="admin-section">
+        <div class="mb-8">
+          <h1 class="text-3xl font-serif font-bold text-primary-text">Welcome back, Admin</h1>
+          <p class="text-secondary-text mt-1">Here is the overview of all shifting operations and system metrics.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+          <div class="dashboard-card p-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-secondary-text text-sm">Total Active Jobs</p>
+                <p class="text-3xl font-black mt-1">2</p>
+                <p class="text-xs text-emerald-600 mt-2">â†‘ 1 from last month</p>
+              </div>
+              <div class="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                <i class="fa-solid fa-truck-fast text-2xl"></i>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-card p-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-secondary-text text-sm">Total Completed Jobs</p>
+                <p class="text-3xl font-black mt-1">8</p>
+                <p class="text-xs text-emerald-600 mt-2">100% on-time delivery</p>
+              </div>
+              <div class="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                <i class="fa-solid fa-boxes-stacked text-2xl"></i>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-card p-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-secondary-text text-sm">Available Crews</p>
+                <p class="text-3xl font-black mt-1">12</p><p class="text-xs text-amber-600 mt-2">3 crews on leave</p>
+              </div>
+              <div class="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                <i class="fa-solid fa-box-open text-2xl"></i>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-card p-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-secondary-text text-sm">Pending Finance & Revenue</p>
+                <p class="text-3xl font-black mt-1">$45,240</p>
+                <p class="text-xs text-emerald-600 mt-2">+15% from last month</p>
+              </div>
+              <div class="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                <i class="fa-solid fa-receipt text-2xl"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- shift progress chart -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+          <div class="dashboard-card p-6 reveal">
+            <h3 class="font-bold text-lg mb-4">Shifts per Quarter</h3>
+            <canvas id="shipmentChart" height="200"></canvas>
+          </div>
+          <div class="dashboard-card p-6 reveal">
+            <h3 class="font-bold text-lg mb-4">Service Type Breakdown</h3>
+            <canvas id="pairingChart" height="200"></canvas>
+          </div>
+        </div>
+
+        <!-- recent requests -->
+        <div class="dashboard-card p-6 mt-6 reveal">
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="font-bold text-lg">Recent Shifting Requests</h3>
+            <button class="text-accent text-sm font-bold hover:underline">View All</button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left">
+              <thead class="border-b border-border text-secondary-text text-xs uppercase tracking-wider">
+                <tr>
+                  <th class="pb-3">Ref #</th>
+                  <th class="pb-3">From â†’ To</th>
+                  <th class="pb-3">Home Size</th>
+                  <th class="pb-3">Status</th>
+                  <th class="pb-3">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                <tr>
+                  <td class="py-4 font-mono font-bold text-accent">#MOV-5092</td>
+                  <td class="py-4">NYC â†’ Boston</td>
+                  <td class="py-4">3 BHK</td>
+                  <td class="py-4"><span class="badge-success px-3 py-1 rounded-full text-xs font-bold">In Transit</span></td>
+                  <td class="py-4"><button class="text-accent hover:underline font-bold">Track</button></td>
+                </tr>
+                <tr>
+                  <td class="py-4 font-mono font-bold text-accent">#MOV-5120</td>
+                  <td class="py-4">Chicago â†’ Detroit</td>
+                  <td class="py-4">2 BHK</td>
+                  <td class="py-4"><span class="badge-warning px-3 py-1 rounded-full text-xs font-bold">Crew Assigned</span></td>
+                  <td class="py-4"><button class="text-accent hover:underline font-bold">Track</button></td>
+                </tr>
+                <tr>
+                  <td class="py-4 font-mono font-bold text-accent">#MOV-5184</td>
+                  <td class="py-4">Austin â†’ Dallas</td>
+                  <td class="py-4">4 BHK</td>
+                  <td class="py-4"><span class="badge-success px-3 py-1 rounded-full text-xs font-bold">Delivered</span></td>
+                  <td class="py-4"><button class="text-accent hover:underline font-bold">View Invoice</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- MY REQUESTS (submit new) -->
+      <div id="requests" class="admin-section hidden">
+        <div class="dashboard-card p-6 reveal">
+          <h2 class="text-2xl font-serif font-bold mb-2"><span class="text-accent">??</span> All Bookings</h2>
+          <p class="text-secondary-text mb-6">Manage all customer bookings across the platform.</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left">
+              <thead class="border-b border-border text-secondary-text text-xs uppercase tracking-wider">
+                <tr><th class="pb-3">Customer</th><th class="pb-3">Route</th><th class="pb-3">Status</th><th class="pb-3">Action</th></tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                <tr>
+                  <td class="py-4 font-bold">John Smith</td>
+                  <td class="py-4">NYC ? LA</td>
+                  <td class="py-4"><span class="badge-warning px-3 py-1 rounded-full text-xs font-bold">Pending</span></td>
+                  <td class="py-4"><button class="btn-accent px-4 py-1 rounded text-xs">Assign Crew</button></td>
+                </tr>
+                <tr>
+                  <td class="py-4 font-bold">Alice Wong</td>
+                  <td class="py-4">Chicago ? Detroit</td>
+                  <td class="py-4"><span class="badge-success px-3 py-1 rounded-full text-xs font-bold">In Transit</span></td>
+                  <td class="py-4"><button class="text-accent hover:underline font-bold text-xs">Track</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- MANAGE CREW (tracking) -->
+      <div id="tracking" class="admin-section hidden">
+        <div class="dashboard-card p-6 reveal">
+          <h2 class="text-2xl font-serif font-bold mb-2"><span class="text-accent">🚚</span> Manage Crew & Dispatch</h2>
+          <p class="text-secondary-text mb-6">Assign moving crews and monitor real-time truck locations.</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left">
+              <thead class="border-b border-border text-secondary-text text-xs uppercase tracking-wider">
+                <tr><th class="pb-3">Crew ID</th><th class="pb-3">Team Leader</th><th class="pb-3">Current Assignment</th><th class="pb-3">Status</th><th class="pb-3">Action</th></tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                <tr>
+                  <td class="py-4 font-bold">CRW-ALPHA</td>
+                  <td class="py-4">Mike Johnson</td>
+                  <td class="py-4">#MOV-5092 (Boston)</td>
+                  <td class="py-4"><span class="badge-success px-3 py-1 rounded-full text-xs font-bold">On Route</span></td>
+                  <td class="py-4"><button class="text-accent hover:underline font-bold text-xs">Ping Location</button></td>
+                </tr>
+                <tr>
+                  <td class="py-4 font-bold">CRW-BETA</td>
+                  <td class="py-4">David Miller</td>
+                  <td class="py-4">None</td>
+                  <td class="py-4"><span class="badge-warning px-3 py-1 rounded-full text-xs font-bold">Available</span></td>
+                  <td class="py-4"><button class="text-accent hover:underline font-bold text-xs">Assign</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- INVOICES -->
+      <div id="invoices" class="admin-section hidden">
+        <div class="dashboard-card p-6 reveal">
+          <h2 class="text-2xl font-serif font-bold mb-2"><span class="text-accent">ðŸ§¾</span> Itemized Finance & Revenue</h2>
+          <p class="text-secondary-text mb-6">Overview of platform revenue, pending payouts and outstanding invoices.</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left">
+              <thead class="border-b border-border text-secondary-text text-xs uppercase tracking-wider">
+                <tr><th class="pb-3">Invoice #</th><th class="pb-3">Customer</th><th class="pb-3">Ref</th><th class="pb-3">Date</th><th class="pb-3">Total</th><th class="pb-3">Action</th></tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                <tr>
+                  <td class="py-4 font-mono font-bold">INV-1024</td>
+                  <td class="py-4 font-bold">John Smith</td>
+                  <td class="py-4">#MOV-5184</td>
+                  <td class="py-4">May 18, 2026</td>
+                  <td class="py-4 font-bold text-success">$3,200</td>
+                  <td class="py-4"><button class="text-accent hover:underline">View details</button></td>
+                </tr>
+                <tr>
+                  <td class="py-4 font-mono font-bold">INV-1012</td>
+                  <td class="py-4 font-bold">Alice Wong</td>
+                  <td class="py-4">#MOV-5021</td>
+                  <td class="py-4">Apr 30, 2026</td>
+                  <td class="py-4 font-bold text-warning">$2,850</td>
+                  <td class="py-4"><button class="text-accent hover:underline">View details</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <div id="profile" class="admin-section hidden">
+        <div class="dashboard-card p-6 reveal">
+          <h2 class="text-2xl font-serif font-bold"><span class="text-accent">ðŸ‘¤</span> My Platform Settings</h2>
+          <div class="grid md:grid-cols-2 gap-6 mt-6">
+            <div><label class="font-bold block">Full Name</label><input type="text" class="w-full px-4 py-3 bg-hover border border-border rounded-xl" value="Admin User"></div>
+            <div><label class="font-bold block">Email</label><input type="email" class="w-full px-4 py-3 bg-hover border border-border rounded-xl" value="admin@shiftora.com"></div>
+            <div><label class="font-bold block">Phone</label><input type="text" class="w-full px-4 py-3 bg-hover border border-border rounded-xl" value="+1 212 555 0192"></div>
+            <div><label class="font-bold block">Default Address</label><input type="text" class="w-full px-4 py-3 bg-hover border border-border rounded-xl" value="Shiftora HQ"></div>
+          </div>
+          <button class="btn-accent px-8 py-3 rounded-xl mt-6">Update Platform Settings</button>
+        </div>
+      </div>
+
+      <footer class="text-center text-xs text-secondary-text border-t border-border pt-8 pb-4">
+        <p>Â© 2026 SHIFTORA â€” Home Shifting & Packing Service</p>
+        <div class="flex justify-center gap-6 mt-4">
+          <a href="#" class="hover:text-accent">Privacy</a>
+          <a href="#" class="hover:text-accent">Terms</a>
+          <a href="#" class="hover:text-accent">Support</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const html = document.documentElement;
+      function setTheme(theme) { html.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark')); document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light')); }
+      setTheme(localStorage.getItem('theme') || 'light');
+      document.getElementById('theme-toggle')?.addEventListener('click', () => setTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
+
+      function setDirection(dir) { html.setAttribute('dir', dir); localStorage.setItem('language', dir === 'rtl' ? 'ar' : 'en'); }
+      setDirection(localStorage.getItem('language') === 'ar' ? 'rtl' : 'ltr');
+      document.getElementById('lang-toggle')?.addEventListener('click', () => setDirection(html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr'));
+
+      const menuToggle = document.getElementById('mobile-menu-toggle'), closeSidebar = document.getElementById('close-sidebar'), sidebar = document.getElementById('sidebar'), overlay = document.getElementById('mobile-overlay');
+      function toggleMobile(open) { sidebar.classList.toggle('-translate-x-full', !open); overlay.classList.toggle('active', open); document.body.style.overflow = open ? 'hidden' : ''; }
+      menuToggle?.addEventListener('click', () => toggleMobile(true)); closeSidebar?.addEventListener('click', () => toggleMobile(false)); overlay?.addEventListener('click', () => toggleMobile(false));
+
+      const sections = ['overview', 'requests', 'tracking', 'invoices', 'profile'];
+      const links = document.querySelectorAll('.sidebar-link');
+      window.activateSection = function (sectionId) { sections.forEach(id => document.getElementById(id)?.classList.add('hidden')); document.getElementById(sectionId)?.classList.remove('hidden'); links.forEach(link => { link.classList.remove('active'); if (link.dataset.section === sectionId) link.classList.add('active'); }); if (window.innerWidth < 1024) toggleMobile(false); };
+      links.forEach(link => { if (link.dataset.section) link.addEventListener('click', (e) => { e.preventDefault(); activateSection(link.dataset.section); }); });
+
+      setTimeout(() => {
+        const shipCtx = document.getElementById('shipmentChart')?.getContext('2d');
+        if (shipCtx) new Chart(shipCtx, { type: 'bar', data: { labels: ['Q1', 'Q2', 'Q3', 'Q4'], datasets: [{ label: 'Shifts', data: [2, 4, 6, 8], backgroundColor: '#000080', borderRadius: 8 }] }, options: { responsive: true } });
+        const pairCtx = document.getElementById('pairingChart')?.getContext('2d');
+        if (pairCtx) new Chart(pairCtx, { type: 'doughnut', data: { labels: ['Local', 'Intercity', 'Packing Only', 'Office'], datasets: [{ data: [35, 30, 20, 15], backgroundColor: ['#000080', '#5C4033', '#BCAAA4', '#D4A373'] }] }, options: { plugins: { legend: { position: 'bottom' } } } });
+      }, 100);
+
+      document.getElementById("logoutBtn")?.addEventListener("click", function (e) { e.preventDefault(); localStorage.clear(); sessionStorage.clear(); window.location.href = "login.html"; });
+    })();
+  </script>
+</body>
+</html>

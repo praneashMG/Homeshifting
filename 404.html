@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/fav.png" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Page Not Found · SHIFTORA</title>
+    <script src="tailwind.js"></script>
+    <style>
+        /* --- exact palette from index.html --- */
+        :root, html[data-theme='light'] {
+            --color-background: #FFFFFF;
+            --color-primary-text: #5C4033;
+            --color-secondary-text: #5C4033;
+            --color-accent: #000080;
+            --color-accent-light: #5C4033;
+            --color-border: #E5E7EB;
+            --color-hover: #E6E6FF;
+        }
+        html[data-theme='dark'] {
+            --color-background: #000000;
+            --color-primary-text: #FFFFFF;
+            --color-secondary-text: #D7CCC8;
+            --color-accent: #000080;
+            --color-accent-light: #BCAAA4;
+            --color-border: #374151;
+            --color-hover: #2B1D16;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 1rem;
+        }
+
+        .text-accent { color: var(--color-accent); }
+        .text-secondary-text { color: var(--color-secondary-text); }
+        .bg-background { background-color: var(--color-background); }
+        .bg-hover { background-color: var(--color-hover); }
+        .border-border { border-color: var(--color-border); }
+
+        /* Rich Gradient */
+        .bg-custom-gradient {
+            background: linear-gradient(135deg, #000080 0%, #5C4033 100%);
+        }
+
+        /* Logo */
+        .logo-shiftora {
+            font-family: ui-serif, serif;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 2.5rem;
+        }
+        .logo-shiftora i { color: #000080; }
+        .logo-shiftora span { color: #000080; }
+
+        /* Floating Controls (no nav) */
+        .controls {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            gap: 0.75rem;
+            z-index: 50;
+        }
+        html[dir="rtl"] .controls {
+            right: auto;
+            left: 1.5rem;
+        }
+
+        .btn-control {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--color-primary-text);
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .btn-control:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+            transform: scale(1.08);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #000080 0%, #5C4033 100%);
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary:hover {
+            opacity: 0.88;
+            transform: scale(1.04);
+            box-shadow: 0 6px 18px rgba(230,179,37,0.3);
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #000080 0%, #5C4033 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 480px) {
+            .error-code { font-size: 5rem; }
+            .logo-shiftora { font-size: 1.8rem; }
+            .controls { top: 1rem; right: 1rem; gap: 0.5rem; }
+            .btn-control { width: 38px; height: 38px; }
+            html[dir="rtl"] .controls { right: auto; left: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Controls: RTL + Theme (no nav) -->
+    <div class="controls">
+        <button onclick="toggleRTL()" class="btn-control" title="Toggle RTL / اللغة">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="btn-control" title="Toggle Dark Mode">
+            <svg class="w-5 h-5 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg class="w-5 h-5 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Main 404 Content -->
+    <div class="text-center max-w-lg mx-auto px-4">
+        <!-- Logo -->
+        <a href="index.html" class="logo-shiftora">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>SHIFTORA</span>
+        </a>
+
+        <!-- Error Code -->
+        <div class="error-code mt-8">404</div>
+
+        <!-- Message -->
+        <h1 class="text-3xl md:text-4xl font-bold text-primary-text mt-4">
+            Oops! Page Not Found
+        </h1>
+        <p class="text-secondary-text text-lg mt-3 max-w-sm mx-auto">
+            The page you're looking for seems to have moved, been renamed, or doesn't exist.
+        </p>
+
+        <!-- Illustration (optional but friendly) -->
+        <div class="mt-6 text-6xl text-accent/30">
+            <i class="fa-solid fa-house-circle-exclamation"></i>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+            <a href="index.html" class="btn-primary px-8 py-3.5 rounded-xl font-bold text-lg shadow-md justify-center">
+                <i class="fa-solid fa-house"></i> Back to Home
+            </a>
+            <a href="contact.html" class="btn-outline px-8 py-3.5 rounded-xl font-bold text-lg flex items-center justify-center gap-2">
+                <i class="fa-regular fa-circle-question"></i> Need Help?
+            </a>
+        </div>
+
+        <!-- Quick Links (subtle) -->
+        <div class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-secondary-text/60">
+            <a href="services.html" class="hover:text-accent transition">Services</a>
+            <span>·</span>
+            <a href="pricing.html" class="hover:text-accent transition">Pricing</a>
+            <span>·</span>
+            <a href="process.html" class="hover:text-accent transition">How It Works</a>
+            <span>·</span>
+            <a href="contact.html" class="hover:text-accent transition">Contact</a>
+        </div>
+
+        <!-- Footer note -->
+        <p class="mt-12 text-xs text-secondary-text/40">
+            © 2026 SHIFTORA — Home Shifting & Packing Service
+        </p>
+    </div>
+
+    <style>
+        .btn-outline {
+            background: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: white;
+            box-shadow: 0 4px 12px rgba(230,179,37,0.25);
+        }
+        html[data-theme='dark'] .btn-outline {
+            color: #000080;
+            border-color: #000080;
+        }
+        html[data-theme='dark'] .btn-outline:hover {
+            background: #000080;
+            color: #000;
+        }
+    </style>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const target = current === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', target);
+            localStorage.setItem('theme', target);
+
+            const lightIcons = document.querySelectorAll('.light-icon');
+            const darkIcons = document.querySelectorAll('.dark-icon');
+            if (target === 'dark') {
+                lightIcons.forEach(icon => icon.classList.add('hidden'));
+                darkIcons.forEach(icon => icon.classList.remove('hidden'));
+            } else {
+                lightIcons.forEach(icon => icon.classList.remove('hidden'));
+                darkIcons.forEach(icon => icon.classList.add('hidden'));
+            }
+        }
+
+        // RTL Toggle
+        function toggleRTL() {
+            const html = document.documentElement;
+            const current = html.getAttribute('dir');
+            const target = current === 'ltr' ? 'rtl' : 'ltr';
+            html.setAttribute('dir', target);
+            localStorage.setItem('dir', target);
+        }
+
+        // Initialize from localStorage
+        (function init() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const html = document.documentElement;
+            html.setAttribute('data-theme', savedTheme);
+
+            const lightIcons = document.querySelectorAll('.light-icon');
+            const darkIcons = document.querySelectorAll('.dark-icon');
+            if (savedTheme === 'dark') {
+                lightIcons.forEach(icon => icon.classList.add('hidden'));
+                darkIcons.forEach(icon => icon.classList.remove('hidden'));
+            } else {
+                lightIcons.forEach(icon => icon.classList.remove('hidden'));
+                darkIcons.forEach(icon => icon.classList.add('hidden'));
+            }
+
+            const savedDir = localStorage.getItem('dir') || 'ltr';
+            html.setAttribute('dir', savedDir);
+        })();
+    </script>
+</body>
+</html>
