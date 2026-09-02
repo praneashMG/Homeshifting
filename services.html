@@ -14,10 +14,10 @@
             --color-background: #FFFFFF;
             --color-primary-text: #5C4033; 
             --color-secondary-text: #5C4033; /* Neat Rich Brown */
-            --color-accent: #000080; /* Lawn Green */
+            --color-accent: #E6B325; /* Lawn Green */
             --color-accent-light: #5C4033; /* Rich Brown */
             --color-border: #E5E7EB; 
-            --color-hover: #E6E6FF; 
+            --color-hover: #FFF8E6; 
             --color-footer-bg: #5C4033;
             --color-footer-text: #EAEAEA; 
         }
@@ -25,7 +25,7 @@
             --color-background: #000000;
             --color-primary-text: #FFFFFF;
             --color-secondary-text: #D7CCC8;
-            --color-accent: #000080; 
+            --color-accent: #E6B325; 
             --color-accent-light: #BCAAA4; 
             --color-border: #374151; 
             --color-hover: #2B1D16;
@@ -60,7 +60,7 @@
 
         /* Rich Gradient */
         .bg-custom-gradient {
-            background: linear-gradient(135deg, #000080 0%, #5C4033 100%);
+            background: linear-gradient(135deg, #E6B325 0%, #5C4033 100%);
         }
 
         #main-footer {
@@ -68,7 +68,7 @@
             color: var(--color-footer-text);
         }
         #main-footer .footer-heading {
-            color: #000080 !important; /* Elegant Green Heading */
+            color: #E6B325 !important; /* Elegant Green Heading */
         }
         #main-footer .footer-link:hover {
             color: #BCAAA4;
@@ -140,7 +140,7 @@
 
         /* â”€â”€ Canonical Button System â”€â”€ */
         .btn-primary, .book-btn {
-            background: linear-gradient(135deg, #000080 0%, #5C4033 100%);
+            background: linear-gradient(135deg, #E6B325 0%, #5C4033 100%);
             color: white;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -163,16 +163,16 @@
             box-shadow: 0 4px 12px rgba(230,179,37,0.25);
         }
         html[data-theme='dark'] .btn-outline {
-            color: #000080;
-            border-color: #000080;
+            color: #E6B325;
+            border-color: #E6B325;
         }
         html[data-theme='dark'] .btn-outline:hover {
-            background: #000080;
+            background: #E6B325;
             color: #000;
         }
         .btn-cta-white {
             background: white;
-            color: #000080;
+            color: #E6B325;
             transition: all 0.3s ease;
             cursor: pointer;
         }
@@ -188,8 +188,8 @@
     <header class="fixed top-4 left-0 right-0 z-50 transition-colors duration-300 shadow-xl border border-border bg-background mx-auto w-[96%] xl:w-[92%] max-w-[1600px] rounded-full" id="main-header">
         <nav class="px-6 sm:px-10 lg:px-12 py-3 flex items-center justify-between h-[70px]">
             <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide flex items-center gap-2">    
-                <i class="fa-solid fa-truck-fast" style="color: #000080;"></i>
-                <span style="color: #000080;">SHIFTORA</span>
+                <i class="fa-solid fa-truck-fast" style="color: #E6B325;"></i>
+                <span style="color: #E6B325;">SHIFTORA</span>
             </a>
 
             <div class="hidden xl:flex items-center space-x-6">
@@ -538,8 +538,8 @@
         <div id="drawer-content" class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 xl:hidden max-h-[85vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
             <div class="flex justify-between items-center pb-4 border-b border-border">
                 <a href="index.html" class="text-2xl font-serif font-extrabold tracking-wide flex items-center gap-2">
-                    <i class="fa-solid fa-truck-fast" style="color: #000080;"></i>
-                    <span style="color: #000080;">SHIFTORA</span>
+                    <i class="fa-solid fa-truck-fast" style="color: #E6B325;"></i>
+                    <span style="color: #E6B325;">SHIFTORA</span>
                 </a>
                 <button id="mobile-menu-close" class="text-primary-text hover:text-accent"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             </div>
@@ -595,8 +595,8 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-gray-800">
                 <div class="lg:col-span-2">
                     <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide flex items-center gap-2 mb-4">    
-                        <i class="fa-solid fa-truck-fast" style="color: #000080;"></i>
-                        <span style="color: #000080;">SHIFTORA</span>
+                        <i class="fa-solid fa-truck-fast" style="color: #E6B325;"></i>
+                        <span style="color: #E6B325;">SHIFTORA</span>
                     </a>
 <p class="text-lg leading-relaxed max-w-sm !text-white-400">
 Providing authentic fossil and mineral specimens with premium quality and rare geological treasures for collectors and enthusiasts.</p>                    <div class="flex gap-6 mt-10">
@@ -757,10 +757,10 @@ Providing authentic fossil and mineral specimens with premium quality and rare g
 
     btnMonthly.addEventListener("click", function () {
 
-        btnMonthly.classList.add("bg-[#000080]", "text-white", "shadow-lg");
+        btnMonthly.classList.add("bg-[#E6B325]", "text-white", "shadow-lg");
         btnMonthly.classList.remove("text-primary-text");
 
-        btnSeasonal.classList.remove("bg-[#000080]", "text-white", "shadow-lg");
+        btnSeasonal.classList.remove("bg-[#E6B325]", "text-white", "shadow-lg");
         btnSeasonal.classList.add("text-primary-text");
 
         monthlyPlans.classList.remove("hidden");
@@ -773,10 +773,10 @@ Providing authentic fossil and mineral specimens with premium quality and rare g
 
     btnSeasonal.addEventListener("click", function () {
 
-        btnSeasonal.classList.add("bg-[#000080]", "text-white", "shadow-lg");
+        btnSeasonal.classList.add("bg-[#E6B325]", "text-white", "shadow-lg");
         btnSeasonal.classList.remove("text-primary-text");
 
-        btnMonthly.classList.remove("bg-[#000080]", "text-white", "shadow-lg");
+        btnMonthly.classList.remove("bg-[#E6B325]", "text-white", "shadow-lg");
         btnMonthly.classList.add("text-primary-text");
 
         seasonalPlans.classList.remove("hidden");
