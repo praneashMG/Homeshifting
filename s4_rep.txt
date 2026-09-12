@@ -1,0 +1,45 @@
+<!-- SECTION 4: Packing Tiers (Side-by-Side Cards) -->
+<section id="packing-tiers" class="py-20 bg-hover">
+<div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px]">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-primary-text mb-4">Choose Your Packing Level</h2>
+<p class="text-secondary-text text-lg">Whether you want us to pack everything or just the heavy stuff, we have a plan for you.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto items-stretch">
+<!-- Partial Packing -->
+<div class="bg-background rounded-3xl border border-border shadow-sm hover:shadow-xl transition-shadow relative overflow-hidden group flex flex-col h-full">
+    <div class="h-56 overflow-hidden">
+        <img src="assets/r2.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Partial Packing">
+    </div>
+    <div class="p-8 sm:p-10 flex flex-col flex-grow">
+        <h3 class="text-2xl font-bold text-primary-text mb-2">Partial Packing</h3>
+        <p class="text-secondary-text mb-8 md:h-16">You pack the clothes and small items, we pack the large furniture, electronics, and mirrors.</p>
+        <ul class="space-y-4 mb-10 flex-grow">
+        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-accent"></i><span class="text-primary-text">Furniture wrapping included</span></li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-accent"></i><span class="text-primary-text">TVs and appliances boxed</span></li>
+        <li class="flex items-center gap-3 text-secondary-text/50"><i class="fa-solid fa-xmark"></i><span>Everyday items (clothes, books)</span></li>
+        </ul>
+        <a href="pricing.html" class="btn-outline block text-center py-3 rounded-xl font-bold w-full mt-auto">Select Partial</a>
+    </div>
+</div>
+<!-- Full Premium Packing -->
+<div class="bg-custom-gradient rounded-3xl shadow-2xl relative overflow-hidden transform md:-translate-y-4 flex flex-col h-full group border-2 border-accent">
+    <div class="absolute top-4 right-6 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold tracking-wide z-20">MOST POPULAR</div>
+    <div class="h-56 overflow-hidden relative">
+        <div class="absolute inset-0 bg-black/30 z-10 pointer-events-none"></div>
+        <img src="assets/a1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Full Packing">
+    </div>
+    <div class="p-8 sm:p-10 flex flex-col flex-grow relative z-20">
+        <h3 class="text-2xl font-bold text-white mb-2">Full VIP Packing</h3>
+        <p class="text-white/80 mb-8 md:h-16">Don't lift a finger. Our crew packs every single drawer, closet, and cabinet in your home.</p>
+        <ul class="space-y-4 mb-10 flex-grow">
+        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i><span class="text-white font-medium">Everything in Partial Packing</span></li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i><span class="text-white font-medium">Kitchenware & Fragiles crated</span></li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i><span class="text-white font-medium">Wardrobe boxing service</span></li>
+        </ul>
+        <a href="pricing.html" class="bg-white text-[#5C4033] hover:bg-gray-100 transition block text-center py-3 rounded-xl font-bold w-full shadow-lg mt-auto">Select Full Packing</a>
+    </div>
+</div>
+</div>
+</div>
+</section>

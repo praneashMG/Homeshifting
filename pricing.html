@@ -268,10 +268,10 @@
                         Use our built-in pricing calculator or choose from our fixed-rate packages. Your final invoice in the dashboard will always match your expectations.
                     </p>
                     <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="signup.html" class="btn-primary w-full sm:w-auto whitespace-nowrap text-center px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-accent/30 flex items-center justify-center gap-3">
+                        <a href="signup.html" class="btn-primary w-full sm:w-auto whitespace-nowrap whitespace-nowrap text-center px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-accent/30 flex items-center justify-center gap-3">
                             Calculate Estimate <i class="fa-solid fa-calculator"></i>
                         </a>
-                        <a href="#pricing-packages" class="btn-outline w-full sm:w-auto whitespace-nowrap text-center px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 bg-background">
+                        <a href="#pricing-packages" class="btn-outline w-full sm:w-auto whitespace-nowrap whitespace-nowrap text-center px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 bg-background">
                             View Packages <i class="fa-solid fa-arrow-down"></i>
                         </a>
                     </div>
@@ -366,49 +366,95 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-primary-text mb-4">Shifting Packages</h2>
                 <p class="text-secondary-text text-lg">Select a plan that fits your budget and relocation needs. Prices scale based on home size.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-center max-w-6xl mx-auto">
-                <!-- Transport Only -->
-                <div class="bg-background rounded-3xl p-6 sm:p-8 border border-border shadow-sm text-center flex flex-col h-full">
-                    <h3 class="text-xl font-bold text-primary-text mb-2">Transport Only</h3>
-                    <p class="text-secondary-text text-sm mb-6 md:h-10">You pack everything. We load, drive, and unload.</p>
-                    <div class="text-4xl font-extrabold text-primary-text mb-6">Economy</div>
-                    <ul class="space-y-4 text-left mb-8 flex-grow">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-accent"></i><span class="text-primary-text text-sm">Professional loading & unloading</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-accent"></i><span class="text-primary-text text-sm">Secure transport vehicle</span></li>
-                        <li class="flex items-center gap-3 opacity-50"><i class="fa-solid fa-xmark text-secondary-text"></i><span class="text-secondary-text text-sm strike-through">Packing materials</span></li>
-                    </ul>
-                    <a href="signup.html" class="btn-outline block w-full py-3 rounded-xl font-bold mt-auto">Select Economy</a>
-                </div>
-                
-                <!-- VIP Packing (Highlighted) -->
-                <div class="bg-custom-gradient rounded-3xl p-6 sm:p-10 shadow-2xl text-center transform lg:scale-105 relative flex flex-col h-full">
-                    <div class="absolute top-0 inset-x-0 transform -translate-y-1/2">
-                        <span class="bg-background text-accent px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase border border-border shadow-md">Most Popular</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2 mt-4">Full Service</h3>
-                    <p class="text-white/80 text-sm mb-6 md:h-10">We handle the wrapping, packing, transport, and unloading.</p>
-                    <div class="text-4xl font-extrabold text-white mb-6">Standard</div>
-                    <ul class="space-y-4 text-left mb-8 border-t border-white/20 pt-6 flex-grow">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i><span class="text-white text-sm">All Economy features</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i><span class="text-white text-sm">Premium boxes & bubble wrap</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i><span class="text-white text-sm">Furniture disassembly/assembly</span></li>
-                    </ul>
-                    <a href="signup.html" class="bg-white text-[#5C4033] hover:bg-gray-100 transition block w-full py-3 rounded-xl font-bold shadow-lg mt-auto">Select Standard</a>
-                </div>
-                
-                <!-- White Glove -->
-                <div class="bg-background rounded-3xl p-6 sm:p-8 border border-border shadow-sm text-center flex flex-col h-full">
-                    <h3 class="text-xl font-bold text-primary-text mb-2">White Glove</h3>
-                    <p class="text-secondary-text text-sm mb-6 md:h-10">Ultimate VIP treatment. We unpack and arrange.</p>
-                    <div class="text-4xl font-extrabold text-primary-text mb-6">Premium</div>
-                    <ul class="space-y-4 text-left mb-8 flex-grow">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-accent"></i><span class="text-primary-text text-sm">All Standard features</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-accent"></i><span class="text-primary-text text-sm">Complete unpacking & setup</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-accent"></i><span class="text-primary-text text-sm">Debris & box removal</span></li>
-                    </ul>
-                    <a href="signup.html" class="btn-outline block w-full py-3 rounded-xl font-bold mt-auto">Select Premium</a>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch max-w-7xl mx-auto">
+    <!-- Transport Only -->
+    <div class="bg-background rounded-3xl border border-border shadow-sm flex flex-col h-full overflow-hidden group">
+        <div class="h-48 overflow-hidden">
+            <img src="assets/a2.jpg" alt="Economy Move" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+        </div>
+        <div class="p-6 sm:p-8 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold text-primary-text mb-2">Transport Only</h3>
+            <p class="text-secondary-text text-sm mb-4">You pack everything. We load, drive, and unload.</p>
+            <div class="text-3xl font-extrabold text-primary-text mb-1">Economy</div>
+            <div class="text-accent font-bold mb-6">Starting at </div>
+            
+            <h4 class="font-bold text-primary-text text-sm mb-3 uppercase tracking-wider">What's Included</h4>
+            <ul class="space-y-3 text-left mb-6 flex-grow">
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent mt-1"></i><span class="text-primary-text text-sm">Professional loading & unloading</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent mt-1"></i><span class="text-primary-text text-sm">Secure transport vehicle</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent mt-1"></i><span class="text-primary-text text-sm">Basic transit insurance</span></li>
+                <li class="flex items-start gap-3 opacity-50"><i class="fa-solid fa-xmark text-secondary-text mt-1"></i><span class="text-secondary-text text-sm strike-through">Packing materials</span></li>
+            </ul>
+            
+            <div class="bg-hover p-4 rounded-xl mb-6">
+                <div class="text-xs font-bold text-primary-text mb-1"><i class="fa-solid fa-gear text-accent"></i> Customization</div>
+                <div class="text-xs text-secondary-text">Add packing materials à la carte directly from your dashboard.</div>
             </div>
+            
+            <a href="signup.html" class="btn-outline block text-center w-full py-3 rounded-xl font-bold mt-auto">Select Economy</a>
+        </div>
+    </div>
+    
+    <!-- VIP Packing (Highlighted) -->
+    <div class="bg-custom-gradient rounded-3xl shadow-2xl transform lg:scale-105 relative flex flex-col h-full overflow-hidden group border-2 border-accent mt-6 lg:mt-0">
+        <div class="absolute top-0 inset-x-0 transform -translate-y-1/2 z-20 text-center mt-4 lg:mt-0">
+            <span class="bg-background text-accent px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase border border-border shadow-md inline-block relative -top-3">Most Popular</span>
+        </div>
+        <div class="h-48 overflow-hidden relative">
+            <img src="assets/a1.jpg" alt="Standard Move" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black/20"></div>
+        </div>
+        <div class="p-6 sm:p-8 flex flex-col flex-grow relative z-10">
+            <h3 class="text-xl font-bold text-white mb-2">Full Service</h3>
+            <p class="text-white/80 text-sm mb-4">We handle the wrapping, packing, transport, and unloading.</p>
+            <div class="text-3xl font-extrabold text-white mb-1">Standard</div>
+            <div class="text-white/90 font-bold mb-6">Starting at $499</div>
+            
+            <h4 class="font-bold text-white text-sm mb-3 uppercase tracking-wider">What's Included</h4>
+            <ul class="space-y-3 text-left mb-6 flex-grow">
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-white mt-1"></i><span class="text-white text-sm">All Economy features</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-white mt-1"></i><span class="text-white text-sm">Premium boxes & bubble wrap</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-white mt-1"></i><span class="text-white text-sm">Furniture disassembly/assembly</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-white mt-1"></i><span class="text-white text-sm">Dedicated moving coordinator</span></li>
+            </ul>
+            
+            <div class="bg-black/20 p-4 rounded-xl mb-6 border border-white/10">
+                <div class="text-xs font-bold text-white mb-1"><i class="fa-solid fa-gear text-white"></i> Customization</div>
+                <div class="text-xs text-white/80">Add temporary storage options if your new home isn't ready.</div>
+            </div>
+            
+            <a href="signup.html" class="bg-white text-center text-[#5C4033] hover:bg-gray-100 transition block w-full py-3 rounded-xl font-bold shadow-lg mt-auto">Select Standard</a>
+        </div>
+    </div>
+    
+    <!-- White Glove -->
+    <div class="bg-background rounded-3xl border border-border shadow-sm flex flex-col h-full overflow-hidden group">
+        <div class="h-48 overflow-hidden">
+            <img src="assets/a3.jpg" alt="Premium Move" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+        </div>
+        <div class="p-6 sm:p-8 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold text-primary-text mb-2">White Glove</h3>
+            <p class="text-secondary-text text-sm mb-4">Ultimate VIP treatment. We unpack and arrange.</p>
+            <div class="text-3xl font-extrabold text-primary-text mb-1">Premium</div>
+            <div class="text-accent font-bold mb-6">Starting at $899</div>
+            
+            <h4 class="font-bold text-primary-text text-sm mb-3 uppercase tracking-wider">What's Included</h4>
+            <ul class="space-y-3 text-left mb-6 flex-grow">
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent mt-1"></i><span class="text-primary-text text-sm">All Standard features</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent mt-1"></i><span class="text-primary-text text-sm">Complete unpacking & setup</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent mt-1"></i><span class="text-primary-text text-sm">Debris & box removal</span></li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-check text-accent mt-1"></i><span class="text-primary-text text-sm">White-glove fragile handling</span></li>
+            </ul>
+            
+            <div class="bg-hover p-4 rounded-xl mb-6">
+                <div class="text-xs font-bold text-primary-text mb-1"><i class="fa-solid fa-gear text-accent"></i> Customization</div>
+                <div class="text-xs text-secondary-text">Fully bespoke scheduling, routing, and art installation.</div>
+            </div>
+            
+            <a href="signup.html" class="btn-outline block text-center w-full py-3 rounded-xl font-bold mt-auto">Select Premium</a>
+        </div>
+    </div>
+</div>
         </div>
     </section>
 

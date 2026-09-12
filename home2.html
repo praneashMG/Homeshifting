@@ -247,59 +247,570 @@
 
    <main class="flex-grow">
     
-    <!-- SECTION 1: Centered Hero with Floating Badges -->
-    <section id="hero-packing" class="relative pt-32 pb-32 lg:pt-40 lg:pb-40 bg-hover overflow-hidden">
+        <!-- SECTION 1: Split Hero with Image -->
+    <section id="hero-packing" class="relative pt-24 pb-24 lg:pt-32 lg:pb-32 bg-hover overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: radial-gradient(var(--color-accent) 1px, transparent 1px); background-size: 40px 40px;"></div>
-        <div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px] relative z-10 text-center">
-            <span class="inline-block text-accent font-bold tracking-widest uppercase text-xs border-2 border-accent px-5 py-2 rounded-full mb-6">Premium Packing Solutions</span>
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-primary-text max-w-4xl mx-auto mb-6">
-                Protect Your Priceless Belongings
-            </h1>
-            <p class="text-lg md:text-xl text-secondary-text max-w-2xl mx-auto mb-10">
-                From delicate glassware to heavy antique furniture, our expert packing crews use multi-layer protection to guarantee zero damage during your shift.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="pricing.html" class="btn-primary px-10 py-4 rounded-xl font-bold text-lg shadow-lg">Get Packing Quote</a>
-                <a href="#materials" class="btn-outline px-10 py-4 rounded-xl font-bold text-lg">View Materials</a>
-            </div>
-        </div>
-      
-    </section>
-
-    <!-- SECTION 2: Bento Box Materials Showcase -->
-    <section id="materials" class="py-20 bg-background relative -mt-16 z-20">
-        <div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px]">
-            <div class="bg-background rounded-3xl shadow-2xl border border-border p-4 sm:p-8 md:p-12">
-                <div class="text-center mb-8 md:mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary-text mb-4">Industry-Grade Packing Materials</h2>
-                    <p class="text-secondary-text text-lg">We don't just use boxes. We engineer a protective shield for your items.</p>
+        <div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px] relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <span class="inline-block text-accent font-bold tracking-widest uppercase text-xs border-2 border-accent px-5 py-2 rounded-full mb-6 bg-background">Premium Packing Solutions</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-primary-text mb-6">
+                        Protect Your Priceless Belongings
+                    </h1>
+                    <p class="text-lg md:text-xl text-secondary-text mb-10">
+                        From delicate glassware to heavy antique furniture, our expert packing crews use multi-layer protection and premium materials to guarantee zero damage during your shift. Experience a stress-free move where we handle every single detail.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                        <a href="pricing.html" class="btn-primary px-10 py-4 rounded-xl font-bold text-lg shadow-lg whitespace-nowrap">Get Packing Quote</a>
+                        <a href="#materials" class="btn-outline px-10 py-4 rounded-xl font-bold text-lg bg-background whitespace-nowrap">View Materials</a>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                    <div class="lg:col-span-2 bg-hover rounded-2xl p-5 sm:p-8 border border-border flex flex-col justify-center transition-transform hover:-translate-y-1">
-                        <i class="fa-solid fa-couch text-4xl text-accent mb-4"></i>
-                        <h3 class="text-2xl font-bold text-primary-text mb-2">Heavy-Duty Furniture Wrap</h3>
-                        <p class="text-secondary-text">Thick quilted pads and industrial stretch wrap protect your sofas, tables, and wooden furniture from scratches and dust.</p>
-                    </div>
-                    <div class="bg-hover rounded-2xl p-5 sm:p-8 border border-border flex flex-col justify-center transition-transform hover:-translate-y-1">
-                        <i class="fa-solid fa-wine-glass text-4xl text-accent mb-4"></i>
-                        <h3 class="text-xl font-bold text-primary-text mb-2">Cell Kits & Bubble Wrap</h3>
-                        <p class="text-secondary-text text-sm">Shock-absorbing layers for glassware and ceramics.</p>
-                    </div>
-                    <div class="bg-hover rounded-2xl p-5 sm:p-8 border border-border flex flex-col justify-center transition-transform hover:-translate-y-1">
-                        <i class="fa-solid fa-tv text-4xl text-accent mb-4"></i>
-                        <h3 class="text-xl font-bold text-primary-text mb-2">Electronics Cartons</h3>
-                        <p class="text-secondary-text text-sm">Anti-static bubble wrap and reinforced boxing for TVs and PCs.</p>
-                    </div>
-                    <div class="lg:col-span-2 bg-hover rounded-2xl p-5 sm:p-8 border border-border flex flex-col justify-center transition-transform hover:-translate-y-1">
-                        <i class="fa-solid fa-shirt text-4xl text-accent mb-4"></i>
-                        <h3 class="text-2xl font-bold text-primary-text mb-2">Wardrobe Boxes</h3>
-                        <p class="text-secondary-text">Move your clothes right on the hanger. Our tall wardrobe boxes keep your suits and dresses wrinkle-free during transit.</p>
+                <div class="lg:w-1/2 w-full">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3]">
+                        <img src="assets/rf.jpg" alt="Professional Packing Team" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-6">
+                            <div class="bg-white/95 backdrop-blur-md p-4 rounded-xl text-left border border-white shadow-lg">
+                                <div class="font-bold text-primary-text mb-1"><i class="fa-solid fa-shield-halved text-accent mr-2"></i>100% Damage-Free Guarantee</div>
+                                <div class="text-sm text-secondary-text">All premium packing services are fully insured.</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+       <!-- ==========================================
+     SECTION 2: PROFESSIONAL PACKING MATERIALS
+=========================================== -->
+<section id="materials" class="relative py-20 sm:py-24 lg:py-28 bg-background overflow-hidden">
+
+    <div class="container mx-auto px-5 sm:px-8 lg:px-12 max-w-[1500px]">
+
+        <!-- HEADER -->
+        <div class="flex flex-col items-center text-center gap-6 mb-12 lg:mb-14">
+
+            <div class="max-w-3xl mx-auto flex flex-col items-center">
+
+                <div class="inline-flex items-center gap-2
+                            px-4 py-2 rounded-full
+                            border border-border bg-hover
+                            text-accent text-xs font-bold
+                            tracking-[0.16em] uppercase">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Premium Protection
+                </div>
+
+                <h2 class="mt-5 text-3xl sm:text-4xl lg:text-5xl
+                           font-extrabold tracking-tight
+                           text-primary-text leading-tight">
+
+                    Packing Materials
+                    <span class="text-accent">Built to Protect</span>
+                </h2>
+
+                <p class="mt-4 text-base sm:text-lg
+                          text-secondary-text leading-7 max-w-2xl mx-auto">
+
+                    Every item requires the right protection.
+                    We use professional-grade materials to reduce
+                    scratches, impact, dust and transit damage.
+                </p>
+
+            </div>
+
+            <!-- Small trust indicator -->
+            <div class="inline-flex items-center gap-3
+                        px-5 py-3 rounded-2xl
+                        border border-border bg-hover mt-2">
+
+                <div class="w-10 h-10 rounded-xl
+                            bg-custom-gradient
+                            flex items-center justify-center
+                            text-white">
+
+                    <i class="fa-solid fa-box-open"></i>
+
+                </div>
+
+                <div>
+                    <p class="text-sm font-bold text-primary-text">
+                        Professional Packing
+                    </p>
+
+                    <p class="text-xs text-secondary-text">
+                        Material for every item
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             DESKTOP FEATURED LAYOUT
+        =========================================== -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
+
+
+            <!-- ==========================================
+                 FEATURED CARD
+            =========================================== -->
+            <article class="group relative lg:col-span-6
+                            min-h-[480px] lg:min-h-[560px]
+                            rounded-[2rem] overflow-hidden
+                            border border-border shadow-lg">
+
+                <img
+                    src="assets/t1.jpg"
+                    alt="Professional movers protecting furniture with heavy-duty wrapping"
+                    class="absolute inset-0 w-full h-full object-cover
+                           transition-transform duration-700
+                           group-hover:scale-105"
+                >
+
+                <!-- Dark gradient -->
+                <div class="absolute inset-0
+                            bg-gradient-to-t
+                            from-black/85 via-black/30
+                            to-black/5">
+                </div>
+
+
+                <!-- Number -->
+                <div class="absolute top-6 right-6
+                            text-5xl font-black
+                            text-white/30">
+                    01
+                </div>
+
+
+                <!-- Icon -->
+                <div class="absolute top-6 left-6
+                            w-12 h-12 rounded-2xl
+                            bg-custom-gradient
+                            flex items-center justify-center
+                            text-white shadow-lg">
+
+                    <i class="fa-solid fa-couch"></i>
+
+                </div>
+
+
+                <!-- Content -->
+                <div class="absolute bottom-0 left-0 right-0 p-7 sm:p-9">
+
+                    <span class="text-xs font-bold
+                                 uppercase tracking-[0.18em]
+                                 text-white/70">
+
+                        Furniture Protection
+
+                    </span>
+
+                    <h3 class="mt-2 text-2xl sm:text-3xl lg:text-4xl
+                               font-extrabold text-white">
+
+                        Heavy-Duty
+                        <br class="hidden sm:block">
+                        Furniture Wrap
+
+                    </h3>
+
+                    <p class="mt-4 max-w-xl
+                              text-sm sm:text-base
+                              text-white/80 leading-6">
+
+                        Quilted furniture pads and industrial stretch
+                        wrap protect sofas, tables, cabinets and wooden
+                        furniture throughout the move.
+
+                    </p>
+
+
+                    <!-- Tags -->
+                    <div class="mt-5 flex flex-wrap gap-2">
+
+                        <span class="px-3 py-1.5 rounded-full
+                                     bg-white/15 backdrop-blur-md
+                                     border border-white/20
+                                     text-xs font-semibold text-white">
+
+                            Quilted Pads
+
+                        </span>
+
+                        <span class="px-3 py-1.5 rounded-full
+                                     bg-white/15 backdrop-blur-md
+                                     border border-white/20
+                                     text-xs font-semibold text-white">
+
+                            Stretch Wrap
+
+                        </span>
+
+                        <span class="px-3 py-1.5 rounded-full
+                                     bg-white/15 backdrop-blur-md
+                                     border border-white/20
+                                     text-xs font-semibold text-white">
+
+                            Dust Protection
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- ==========================================
+                 RIGHT SIDE — 4 MATERIAL CARDS
+            =========================================== -->
+            <div class="lg:col-span-6 grid grid-cols-1
+                        sm:grid-cols-2 gap-5 lg:gap-6">
+
+
+                <!-- CELL KITS -->
+                <article class="group rounded-[1.75rem]
+                                overflow-hidden border border-border
+                                bg-hover hover:shadow-xl
+                                transition-all duration-300">
+
+                    <div class="relative h-52 overflow-hidden">
+
+                        <img
+                            src="assets/t2.jpg"
+                            alt="Protective cell kits for fragile glassware"
+                            class="w-full h-full object-cover
+                                   transition-transform duration-700
+                                   group-hover:scale-105"
+                        >
+
+                        <div class="absolute inset-0
+                                    bg-gradient-to-t
+                                    from-black/70 to-transparent">
+                        </div>
+
+                        <span class="absolute top-4 right-4
+                                     text-3xl font-black
+                                     text-white/30">
+                            02
+                        </span>
+
+                        <div class="absolute bottom-4 left-4
+                                    w-10 h-10 rounded-xl
+                                    bg-custom-gradient
+                                    flex items-center justify-center
+                                    text-white">
+
+                            <i class="fa-solid fa-wine-glass"></i>
+
+                        </div>
+
+                    </div>
+
+                    <div class="p-5">
+
+                        <h3 class="text-xl font-bold text-primary-text">
+                            Cell Kits
+                        </h3>
+
+                        <p class="mt-2 text-sm text-secondary-text
+                                  leading-6">
+
+                            Individual compartments cushion glassware,
+                            ceramics and other fragile belongings.
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ELECTRONICS -->
+                <article class="group rounded-[1.75rem]
+                                overflow-hidden border border-border
+                                bg-hover hover:shadow-xl
+                                transition-all duration-300">
+
+                    <div class="relative h-52 overflow-hidden">
+
+                        <img
+                            src="assets/tt1.jpg"
+                            alt="Protective cartons for televisions and electronics"
+                            class="w-full h-full object-cover
+                                   transition-transform duration-700
+                                   group-hover:scale-105"
+                        >
+
+                        <div class="absolute inset-0
+                                    bg-gradient-to-t
+                                    from-black/70 to-transparent">
+                        </div>
+
+                        <span class="absolute top-4 right-4
+                                     text-3xl font-black
+                                     text-white/30">
+                            03
+                        </span>
+
+                        <div class="absolute bottom-4 left-4
+                                    w-10 h-10 rounded-xl
+                                    bg-custom-gradient
+                                    flex items-center justify-center
+                                    text-white">
+
+                            <i class="fa-solid fa-tv"></i>
+
+                        </div>
+
+                    </div>
+
+                    <div class="p-5">
+
+                        <h3 class="text-xl font-bold text-primary-text">
+                            Electronics Cartons
+                        </h3>
+
+                        <p class="mt-2 text-sm text-secondary-text
+                                  leading-6">
+
+                            Reinforced cartons and anti-static protection
+                            for TVs, computers and sensitive electronics.
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- WARDROBE -->
+                <article class="group rounded-[1.75rem]
+                                overflow-hidden border border-border
+                                bg-hover hover:shadow-xl
+                                transition-all duration-300">
+
+                    <div class="relative h-52 overflow-hidden">
+
+                        <img
+                            src="assets/a5.jpg"
+                            alt="Wardrobe boxes protecting clothing during moving"
+                            class="w-full h-full object-cover
+                                   transition-transform duration-700
+                                   group-hover:scale-105"
+                        >
+
+                        <div class="absolute inset-0
+                                    bg-gradient-to-t
+                                    from-black/70 to-transparent">
+                        </div>
+
+                        <span class="absolute top-4 right-4
+                                     text-3xl font-black
+                                     text-white/30">
+                            04
+                        </span>
+
+                        <div class="absolute bottom-4 left-4
+                                    w-10 h-10 rounded-xl
+                                    bg-custom-gradient
+                                    flex items-center justify-center
+                                    text-white">
+
+                            <i class="fa-solid fa-shirt"></i>
+
+                        </div>
+
+                    </div>
+
+                    <div class="p-5">
+
+                        <h3 class="text-xl font-bold text-primary-text">
+                            Wardrobe Boxes
+                        </h3>
+
+                        <p class="mt-2 text-sm text-secondary-text
+                                  leading-6">
+
+                            Keep clothes on hangers to reduce wrinkles
+                            and make unpacking faster.
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FRAGILE PROTECTION -->
+                <article class="group relative rounded-[1.75rem]
+                                overflow-hidden border border-border
+                                bg-hover hover:shadow-xl
+                                transition-all duration-300
+                                p-6 flex flex-col justify-between">
+
+                    <div>
+
+                        <div class="flex items-start justify-between">
+
+                            <div class="w-11 h-11 rounded-xl
+                                        bg-custom-gradient
+                                        flex items-center justify-center
+                                        text-white">
+
+                                <i class="fa-solid fa-boxes-stacked"></i>
+
+                            </div>
+
+                            <span class="text-3xl font-black
+                                         text-primary-text/10">
+                                05
+                            </span>
+
+                        </div>
+
+                        <h3 class="mt-6 text-xl font-bold
+                                   text-primary-text">
+
+                            Fragile Item Protection
+
+                        </h3>
+
+                        <p class="mt-2 text-sm text-secondary-text
+                                  leading-6">
+
+                            Bubble wrap, foam, corner guards and
+                            layered cushioning for delicate belongings.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="mt-6 pt-4
+                                border-t border-border
+                                flex items-center justify-between">
+
+                        <span class="text-xs font-bold
+                                     uppercase tracking-wider
+                                     text-secondary-text">
+
+                            Extra Care
+
+                        </span>
+
+                        <span class="w-8 h-8 rounded-full
+                                     bg-background
+                                     border border-border
+                                     flex items-center justify-center
+                                     text-accent">
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             BOTTOM TRUST BAR
+        =========================================== -->
+        <div class="mt-6 grid grid-cols-1
+                    sm:grid-cols-3 gap-4">
+
+            <div class="flex items-center gap-4
+                        rounded-2xl border border-border
+                        bg-hover px-5 py-4">
+
+                <div class="w-10 h-10 shrink-0 rounded-xl
+                            bg-background border border-border
+                            flex items-center justify-center
+                            text-accent">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                </div>
+
+                <div>
+                    <p class="text-sm font-bold text-primary-text">
+                        Item-Specific Protection
+                    </p>
+
+                    <p class="text-xs text-secondary-text">
+                        The right material for every item
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="flex items-center gap-4
+                        rounded-2xl border border-border
+                        bg-hover px-5 py-4">
+
+                <div class="w-10 h-10 shrink-0 rounded-xl
+                            bg-background border border-border
+                            flex items-center justify-center
+                            text-accent">
+
+                    <i class="fa-solid fa-certificate"></i>
+
+                </div>
+
+                <div>
+                    <p class="text-sm font-bold text-primary-text">
+                        Professional Standards
+                    </p>
+
+                    <p class="text-xs text-secondary-text">
+                        Quality packing materials
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="flex items-center gap-4
+                        rounded-2xl border border-border
+                        bg-hover px-5 py-4">
+
+                <div class="w-10 h-10 shrink-0 rounded-xl
+                            bg-background border border-border
+                            flex items-center justify-center
+                            text-accent">
+
+                    <i class="fa-solid fa-truck-fast"></i>
+
+                </div>
+
+                <div>
+                    <p class="text-sm font-bold text-primary-text">
+                        Transit Ready
+                    </p>
+
+                    <p class="text-xs text-secondary-text">
+                        Protection from pickup to delivery
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
     <!-- SECTION 3: Dashboard / Special Handling Integration (Split Tech Design) -->
     <section id="dashboard-handling" class="py-20 bg-background">
         <div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px]">
@@ -356,40 +867,50 @@
     </section>
 
     <!-- SECTION 4: Packing Tiers (Side-by-Side Cards) -->
-    <section id="packing-tiers" class="py-20 bg-hover">
-        <div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px]">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary-text mb-4">Choose Your Packing Level</h2>
-                <p class="text-secondary-text text-lg">Whether you want us to pack everything or just the heavy stuff, we have a plan for you.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-                <!-- Partial Packing -->
-                <div class="bg-background rounded-3xl p-10 border border-border shadow-sm hover:shadow-xl transition-shadow relative overflow-hidden group flex flex-col h-full">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-accent opacity-10 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
-                    <h3 class="text-2xl font-bold text-primary-text mb-2">Partial Packing</h3>
-                    <p class="text-secondary-text mb-8 md:h-16">You pack the clothes and small items, we pack the large furniture, electronics, and mirrors.</p>
-                    <ul class="space-y-4 mb-10 flex-grow">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-accent"></i><span class="text-primary-text">Furniture wrapping included</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-accent"></i><span class="text-primary-text">TVs and appliances boxed</span></li>
-                        <li class="flex items-center gap-3 text-secondary-text/50"><i class="fa-solid fa-xmark"></i><span>Everyday items (clothes, books)</span></li>
-                    </ul>
-                    <a href="contact.html" class="btn-outline block text-center py-3 rounded-xl font-bold w-full mt-auto">Select Partial</a>
-                </div>
-                <!-- Full Premium Packing -->
-                <div class="bg-custom-gradient rounded-3xl p-10 shadow-2xl relative overflow-hidden transform md:-translate-y-4 flex flex-col h-full">
-                    <div class="absolute top-4 right-6 bg-white/20 px-3 py-1 rounded-full text-white text-xs font-bold tracking-wide">MOST POPULAR</div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Full VIP Packing</h3>
-                    <p class="text-white/80 mb-8 md:h-16">Don't lift a finger. Our crew packs every single drawer, closet, and cabinet in your home.</p>
-                    <ul class="space-y-4 mb-10 flex-grow">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i><span class="text-white font-medium">Everything in Partial Packing</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i><span class="text-white font-medium">Kitchenware & Fragiles crated</span></li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i><span class="text-white font-medium">Wardrobe boxing service</span></li>
-                    </ul>
-                    <a href="contact.html" class="bg-white text-[#5C4033] hover:bg-gray-100 transition block text-center py-3 rounded-xl font-bold w-full shadow-lg mt-auto">Select Full Packing</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="packing-tiers" class="py-20 bg-hover">
+<div class="container mx-auto px-6 sm:px-10 lg:px-12 max-w-[1600px]">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-primary-text mb-4">Choose Your Packing Level</h2>
+<p class="text-secondary-text text-lg">Whether you want us to pack everything or just the heavy stuff, we have a plan for you.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto items-stretch">
+<!-- Partial Packing -->
+<div class="bg-background rounded-3xl border border-border shadow-sm hover:shadow-xl transition-shadow relative overflow-hidden group flex flex-col h-full">
+    <div class="h-56 overflow-hidden">
+        <img src="assets/r2.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Partial Packing">
+    </div>
+    <div class="p-8 sm:p-10 flex flex-col flex-grow">
+        <h3 class="text-2xl font-bold text-primary-text mb-2">Partial Packing</h3>
+        <p class="text-secondary-text mb-8 md:h-16">You pack the clothes and small items, we pack the large furniture, electronics, and mirrors.</p>
+        <ul class="space-y-4 mb-10 flex-grow">
+        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-accent"></i><span class="text-primary-text">Furniture wrapping included</span></li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-accent"></i><span class="text-primary-text">TVs and appliances boxed</span></li>
+        <li class="flex items-center gap-3 text-secondary-text/50"><i class="fa-solid fa-xmark"></i><span>Everyday items (clothes, books)</span></li>
+        </ul>
+        <a href="pricing.html" class="btn-outline block text-center py-3 rounded-xl font-bold w-full mt-auto">Select Partial</a>
+    </div>
+</div>
+<!-- Full Premium Packing -->
+<div class="bg-custom-gradient rounded-3xl shadow-2xl relative overflow-hidden transform md:-translate-y-4 flex flex-col h-full group border-2 border-accent">
+    <div class="absolute top-4 right-6 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold tracking-wide z-20">MOST POPULAR</div>
+    <div class="h-56 overflow-hidden relative">
+        <div class="absolute inset-0 bg-black/30 z-10 pointer-events-none"></div>
+        <img src="assets/a1.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Full Packing">
+    </div>
+    <div class="p-8 sm:p-10 flex flex-col flex-grow relative z-20">
+        <h3 class="text-2xl font-bold text-white mb-2">Full VIP Packing</h3>
+        <p class="text-white/80 mb-8 md:h-16">Don't lift a finger. Our crew packs every single drawer, closet, and cabinet in your home.</p>
+        <ul class="space-y-4 mb-10 flex-grow">
+        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i><span class="text-white font-medium">Everything in Partial Packing</span></li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i><span class="text-white font-medium">Kitchenware & Fragiles crated</span></li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-white"></i><span class="text-white font-medium">Wardrobe boxing service</span></li>
+        </ul>
+        <a href="pricing.html" class="bg-white text-[#5C4033] hover:bg-gray-100 transition block text-center py-3 rounded-xl font-bold w-full shadow-lg mt-auto">Select Full Packing</a>
+    </div>
+</div>
+</div>
+</div>
+</section>
 
     <!-- SECTION 5: The "Unpacking" Promise (Zig-Zag Image Left, Text Right) -->
     <section id="unpacking" class="py-20 bg-background border-b border-border">
